@@ -519,6 +519,151 @@ h1 {
   color: var(--accent-primary);
 }
 
+/* ─── Voice Control Panel ──────────────────────────── */
+.voicePanelCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.voicePanelCard:hover {
+  border-color: var(--glass-highlight);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.voicePanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.voicePanelHeader h3 {
+  color: var(--text-main);
+  font-size: 1.25rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.voiceControlsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.sliderGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sliderGroup label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.modernSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  outline: none;
+  transition: background 0.2s;
+}
+
+.modernSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+  transition: transform 0.2s;
+}
+
+.modernSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.modernSlider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+  transition: transform 0.2s;
+}
+
+.modernSlider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.voiceBtn {
+  background: var(--bg-glass);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.voiceBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.voiceBtn.active {
+  background: rgba(0, 233, 255, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.voiceBtn.muted {
+  background: rgba(255, 61, 0, 0.1);
+  border-color: var(--status-offline);
+  color: var(--status-offline);
+}
+
+.voiceBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.voiceBtn.repeatBtn {
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(123, 44, 191, 0.1);
+  border-color: var(--accent-secondary);
+  color: #fff;
+}
+
+.voiceBtn.repeatBtn:hover:not(:disabled) {
+  box-shadow: 0 0 15px rgba(123, 44, 191, 0.3);
+}
+
 /* ─── Animations ──────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

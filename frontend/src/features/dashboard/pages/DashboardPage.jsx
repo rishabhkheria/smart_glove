@@ -1,8 +1,11 @@
 import DashboardPanel from "../components/DashboardPanel";
+import VoiceControlPanel from "../components/VoiceControlPanel";
 import useDashboardData from "../hooks/useDashboardData";
 
 function DashboardPage() {
   const { data, isOnline, lastUpdated, error } = useDashboardData(1000);
+
+  const currentGesture = isOnline ? data.gesture : null;
 
   return (
     <section>
@@ -12,6 +15,8 @@ function DashboardPage() {
           Real-time values from flex sensors and MPU motion streams, interpreted instantly.
         </p>
       </div>
+
+      <VoiceControlPanel currentGesture={currentGesture} />
 
       <DashboardPanel
         data={data}
