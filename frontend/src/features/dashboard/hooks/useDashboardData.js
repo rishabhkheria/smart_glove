@@ -12,9 +12,9 @@ export default function useDashboardData(intervalMs = 1000) {
 
   const refresh = useCallback(async () => {
     try {
-      const payload = await fetchLatestDashboardData();
+      const { payload, latency } = await fetchLatestDashboardData();
       if (hasPayload(payload)) {
-        setState(createOnlineState(payload));
+        setState(createOnlineState(payload, latency));
       } else {
         setState((prev) => createOfflineState(prev.data));
       }

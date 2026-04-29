@@ -3,7 +3,7 @@ import VoiceControlPanel from "../components/VoiceControlPanel";
 import useDashboardData from "../hooks/useDashboardData";
 
 function DashboardPage() {
-  const { data, isOnline, lastUpdated, error } = useDashboardData(1000);
+  const { data, isOnline, lastUpdated, latency, error } = useDashboardData(1000);
 
   const currentGesture = isOnline ? data.gesture : null;
 
@@ -22,6 +22,7 @@ function DashboardPage() {
         data={data}
         isOnline={isOnline}
         lastUpdated={lastUpdated}
+        latency={latency}
         error={error}
       />
     </section>

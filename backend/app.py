@@ -204,6 +204,7 @@ class GestureCallback(Resource):
         latest_data["pinky"] = pinky_raw
         latest_data["pitch"] = pitch_raw
         latest_data["roll"] = roll_raw
+        latest_data["timestamp"] = int(time.time() * 1000)
 
         # -----------------------------------
         # 5) Speak the label

@@ -6,6 +6,11 @@ const dashboardClient = axios.create({
 });
 
 export async function fetchLatestDashboardData() {
+  const start = Date.now();
   const response = await dashboardClient.get("api/latest");
-  return response.data ?? {};
+  const end = Date.now();
+  return {
+    payload: response.data ?? {},
+    latency: end - start
+  };
 }

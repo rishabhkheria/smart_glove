@@ -32,7 +32,7 @@ function AppLayout() {
       </main>
 
       <footer className="siteFooter">
-        <p>Built by <span>Rishabh</span> | Smart Glove Project &copy; {new Date().getFullYear()}</p>
+        <p>Built by <a href="https://www.linkedin.com/in/rishabh-kheria-670ab7263/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><span>Rishabh</span></a> | Smart Glove Project &copy; {new Date().getFullYear()}</p>
       </footer>
     </div>
   );
