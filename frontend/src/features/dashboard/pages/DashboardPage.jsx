@@ -5,11 +5,13 @@ function DashboardPage() {
   const { data, isOnline, lastUpdated, error } = useDashboardData(1000);
 
   return (
-    <section className="dashboardPage">
-      <h1>Live Glove Output Dashboard</h1>
-      <p className="pageSubtext">
-        Realtime values from thumb, finger flex sensors, and MPU motion streams.
-      </p>
+    <section>
+      <div style={{ marginBottom: '2rem' }}>
+        <h1>Telemetry Dashboard</h1>
+        <p className="pageSubtext">
+          Real-time values from flex sensors and MPU motion streams, interpreted instantly.
+        </p>
+      </div>
 
       <DashboardPanel
         data={data}

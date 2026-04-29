@@ -4,38 +4,75 @@ function toTitleCase(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
+// Simple icons for sensors
+const SENSOR_ICONS = {
+  thumb: "👍",
+  index: "☝️",
+  middle: "🖕",
+  ring: "💍",
+  pinky: "🤙",
+  pitch: "↕️",
+  roll: "↔️"
+};
+
+// Map values to 0-100% for the progress bars (assuming analog values around 0-4095 or similar, adapt max as needed)
+// If values are e.g. 0-1023:
+const getFillWidth = (val) => {
+  if (!val || isNaN(val)) return 0;
+  // Fallback map logic - just keeping it visual
+  const max = 4095; 
+  let percent = (Math.abs(val) / max) * 100;
+  if (percent > 100) percent = 100;
+  return percent;
+};
+
 function DashboardPanel({ data, isOnline, lastUpdated, error }) {
+  const currentGesture = isOnline ? (data.gesture || "IDLE") : "OFFLINE";
+  
   return (
-    <section className="dashboardWrap">
+    <div className="dashboardWrap">
       <div className="dashboardHeader">
-        <div className="connectionState">
-          <span className={`dot ${isOnline ? "dotOnline" : "dotOffline"}`} />
-          <strong>{isOnline ? "Connected" : "Offline"}</strong>
+        <div className="statusIndicator">
+          <span className={`statusDot ${isOnline ? "online" : "offline"}`} />
+          <span>{isOnline ? "System Online" : "System Offline"}</span>
         </div>
-
-        <button type="button" className="liveBadge">
-          LIVE
-        </button>
       </div>
 
-      <h2 className="gestureHeading">
-        Gesture: {isOnline ? data.gesture || "Unknown" : "Waiting for Smart Glove..."}
-      </h2>
-
-      <div className="sensorCards">
-        {SENSOR_KEYS.map((key) => (
-          <article className="sensorCard" key={key}>
-            <span>{toTitleCase(key)}</span>
-            <strong>{isOnline ? data[key] ?? "--" : "--"}</strong>
-          </article>
-        ))}
+      <div className="gestureCard">
+        <div className="gestureLabel">Detected Gesture</div>
+        <div className={`gestureValue ${isOnline && data.gesture ? 'active' : ''}`} key={currentGesture}>
+          {currentGesture}
+        </div>
       </div>
 
-      <div className="dashboardMeta">
-        <span>Last Updated: {lastUpdated}</span>
-        {error ? <span className="errorText">{error}</span> : null}
+      <div className="sensorGrid">
+        {SENSOR_KEYS.map((key) => {
+          const val = isOnline ? data[key] ?? 0 : 0;
+          return (
+            <article className="sensorCard" key={key}>
+              <div className="sensorHeader">
+                <span className="sensorIcon">{SENSOR_ICONS[key] || "⚡"}</span>
+                <span>{toTitleCase(key)}</span>
+              </div>
+              <div className="sensorValue">
+                {isOnline ? data[key] ?? "--" : "--"}
+              </div>
+              <div className="sensorBarContainer">
+                <div 
+                  className="sensorBarFill" 
+                  style={{ width: `${getFillWidth(val)}%` }}
+                ></div>
+              </div>
+            </article>
+          );
+        })}
       </div>
-    </section>
+
+      <div className="dashboardFooter">
+        <span>Last Sync: {lastUpdated}</span>
+        {error && <span style={{ color: '#ff3d00' }}>{error}</span>}
+      </div>
+    </div>
   );
 }
 
