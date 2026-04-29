@@ -1,0 +1,12 @@
+.venv/
+*.env
+backend/.env
+frontend/.env
+firmware/secrets.h
+node_modules/
+dist/
+frontend/dist/
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store
