@@ -252,6 +252,22 @@ Even after the server is deployed to the cloud, the physical ESP32 chip still co
 4. **Flash (Upload)** the updated code to the ESP32.
 *(Without this step, the glove will not send data to the cloud dashboard.)*
 
+## Testing Without Hardware (Simulating ESP32)
+
+Since the backend acts as a REST API, you can test the live dashboard without needing the physical glove by manually triggering the data ingestion endpoint.
+
+1. Open the [Live Dashboard](https://smart-glove-frontend.onrender.com) in one tab.
+2. In another tab, open any of the links below to simulate the ESP32 sending real ML-trained sensor data:
+
+- **Sign Language "A"**: [Test "A"](https://smart-glove-backend.onrender.com/callback.gesture/342/288/294/301/295/261/340)
+- **Sign Language "B"**: [Test "B"](https://smart-glove-backend.onrender.com/callback.gesture/336/336/348/344/340/260/331)
+- **Sign Language "C"**: [Test "C"](https://smart-glove-backend.onrender.com/callback.gesture/338/288/311/314/317/256/339)
+- **Word "LOVE"**: [Test "LOVE"](https://smart-glove-backend.onrender.com/callback.gesture/347/342/303/310/341/253/337)
+- **Word "THANKS"**: [Test "THANKS"](https://smart-glove-backend.onrender.com/callback.gesture/346/342/348/344/341/257/285)
+- **Emergency "HELP"**: [Test "HELP"](https://smart-glove-backend.onrender.com/callback.gesture/456/456/456/456/456/256/256)
+
+*(When you click a link, the API processes the gesture and the Dashboard tab will instantly update in real-time.)*
+
 ## Environment Variables
 
 Create `.env` inside `backend`:
