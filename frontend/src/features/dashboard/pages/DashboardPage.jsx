@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import DashboardPanel from "../components/DashboardPanel";
 import VoiceControlPanel from "../components/VoiceControlPanel";
 import useDashboardData from "../hooks/useDashboardData";
 
 function DashboardPage() {
+  useEffect(() => { document.title = "Smart Glove | Dashboard"; }, []);
   const { data, isOnline, lastUpdated, latency, error } = useDashboardData(1000);
 
   const currentGesture = isOnline ? data.gesture : null;

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const featureCards = [
   {
     icon: "🧠",
@@ -33,6 +35,7 @@ const stack = [
 ];
 
 function ProjectInfoPage() {
+  useEffect(() => { document.title = "Smart Glove | Architecture"; }, []);
   return (
     <section>
       <div style={{ marginBottom: '3rem' }}>
