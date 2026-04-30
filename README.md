@@ -222,18 +222,35 @@ Upload using Arduino IDE to the ESP32.
 
 ## Deployment
 
-### Frontend
+The project is fully deployed and accessible online.
 
-Deploy on Render Static Site.
+- **Live Dashboard (Frontend):** [https://smart-glove-frontend.onrender.com](https://smart-glove-frontend.onrender.com)
+- **Live API (Backend):** [https://smart-glove-backend.onrender.com](https://smart-glove-backend.onrender.com)
 
-### Backend
+### How to Deploy Your Own
 
-Deploy on Render Web Service.
+#### 1. Backend (Render Web Service)
+1. Create a new **Web Service** on Render connected to your GitHub repo.
+2. Set **Root Directory** to `backend`.
+3. Set **Runtime** to `Python 3`.
+4. Set **Build Command** to `pip install -r requirements.txt`.
+5. Set **Start Command** to `gunicorn app:app`.
+6. Add an Environment Variable: `PYTHON_VERSION` = `3.11.9` *(Crucial for fast Numpy/Pandas builds on free tiers)*.
 
-After deployment:
+#### 2. Frontend (Render Static Site)
+1. After the backend is live, update the `baseURL` in `frontend/src/features/dashboard/services/dashboardApi.js` to your new backend URL.
+2. Create a new **Static Site** on Render.
+3. Set **Root Directory** to `frontend`.
+4. Set **Build Command** to `npm install && npm run build`.
+5. Set **Publish Directory** to `dist`.
 
-- Frontend calls backend APIs
-- Backend returns live gesture data
+#### 3. Firmware Update (Crucial Final Step)
+Even after the server is deployed to the cloud, the physical ESP32 chip still contains the old code pointing to `localhost`. You must update its memory:
+1. Open `firmware/smart_glove.ino` in Arduino IDE.
+2. Update the `gestureServerIP` variable to your new Render backend URL (e.g., `"smart-glove-backend.onrender.com"`).
+3. Connect the ESP32 to your laptop via USB.
+4. **Flash (Upload)** the updated code to the ESP32.
+*(Without this step, the glove will not send data to the cloud dashboard.)*
 
 ## Environment Variables
 
