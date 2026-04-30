@@ -1,35 +1,38 @@
 :root {
-  /* Core Theme - Premium Dark Mode */
-  --bg-base: #06080f;
-  --bg-surface: rgba(16, 22, 35, 0.6);
-  --bg-glass: rgba(19, 26, 42, 0.4);
+  /* Core Theme - Stealth Dark Mode */
+  --bg-base: #09090b; /* True Dark Zinc */
+  --bg-surface: rgba(24, 24, 27, 0.6);
+  --bg-glass: rgba(39, 39, 42, 0.4);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
   
   /* Text */
-  --text-main: #f0f4ff;
-  --text-muted: #8b99b3;
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
   --text-inverse: #000000;
   
-  /* Accents */
-  --accent-primary: #00e9ff; /* Vibrant Cyan */
-  --accent-primary-glow: rgba(0, 233, 255, 0.4);
-  --accent-secondary: #7b2cbf; /* Deep Purple */
-  --accent-gradient: linear-gradient(135deg, #00e9ff 0%, #3a86ff 100%);
+  /* Accents - Sleek Cyan & Blue */
+  --accent-primary: #00e9ff;
+  --accent-primary-glow: rgba(0, 233, 255, 0.1);
+  --accent-secondary: #3b82f6;
+  --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+  
+  /* Crisp White Text for H1 */
+  --text-gradient: linear-gradient(to right, #ffffff, #e4e4e7);
   
   /* Status Colors */
-  --status-online: #00e676;
-  --status-online-glow: rgba(0, 230, 118, 0.5);
-  --status-offline: #ff3d00;
-  --status-offline-glow: rgba(255, 61, 0, 0.5);
+  --status-online: #10b981;
+  --status-online-glow: rgba(16, 185, 129, 0.1);
+  --status-offline: #ef4444;
+  --status-offline-glow: rgba(239, 68, 68, 0.1);
   
   /* Shadows & Layout */
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 20px var(--accent-primary-glow);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 2px 8px var(--accent-primary-glow);
   --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   --radius-pill: 9999px;
   
   --nav-height: 80px;
@@ -39,8 +42,8 @@
 body {
   background-color: var(--bg-base);
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(0, 233, 255, 0.05), transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(123, 44, 191, 0.08), transparent 40%);
+    radial-gradient(circle at top left, rgba(0, 233, 255, 0.03), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(58, 123, 213, 0.03), transparent 40%);
   background-attachment: fixed;
   color: var(--text-main);
   min-height: 100vh;
@@ -62,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  background: var(--accent-gradient);
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
@@ -172,7 +175,7 @@ h1 {
 .btnPrimary {
   background: var(--accent-gradient);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 233, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -181,14 +184,14 @@ h1 {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(rgba(255,255,255,0.1), transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
 .btnPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 233, 255, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .btnPrimary:hover::before {
@@ -237,7 +240,7 @@ h1 {
   height: 8px;
   border-radius: 50%;
   background: var(--accent-primary);
-  box-shadow: 0 0 10px var(--accent-primary);
+  box-shadow: 0 0 6px var(--accent-primary-glow);
   animation: pulse 2s infinite;
 }
 

@@ -8,11 +8,11 @@ function LandingPage() {
         Assistive Wearable Technology
       </div>
       
-      <h1>AI Smart Glove for<br/>Gesture to Speech</h1>
+      <h1>Smart Glove for<br/>Gesture to Speech</h1>
       
       <p className="pageSubtext" style={{ fontSize: '1.25rem', marginBottom: '2rem' }}>
-        A next-generation compact smart glove system. Interprets hand gestures in real-time, 
-        speaks the detected meaning via AI, and streams live sensor telemetry to a premium dashboard.
+        A next-generation compact smart glove system. Interprets hand gestures in real-time using 
+        Machine Learning (KNN), synthesizes speech instantly, and streams live sensor telemetry to a premium dashboard.
       </p>
 
       <div className="heroCta">
