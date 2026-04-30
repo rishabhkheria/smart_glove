@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const dashboardClient = axios.create({
-  baseURL: "/",
+  baseURL: "https://smart-glove-backend.onrender.com/",
   timeout: 4000,
 });
 

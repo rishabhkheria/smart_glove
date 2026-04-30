@@ -51,9 +51,9 @@ const char* ssid     = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
 const char* googleApiKey = GOOGLE_API_KEY;
 
-// 🔴 CHANGE THIS TO MATCH PYTHON TERMINAL: "Running on http://<IP>:5000"
-const char* gestureServerIP   = "172.20.10.4";
-const int   gestureServerPort = 5000;
+// 🔴 PRODUCTION RENDER SERVER URL
+const char* gestureServerIP   = "smart-glove-backend.onrender.com";
+const int   gestureServerPort = 443;
 
 // ---------- Forward declarations ----------
 void mpu_setup();
@@ -215,9 +215,8 @@ String translateText(const char* text, const String &targetLang) {
 
 // ---------- Call gesture server ----------
 void get_gesture(int &pitch, int &roll) {
-  String url = String("http://") +
+  String url = String("https://") +
                String(gestureServerIP) +
-               ":" + String(gestureServerPort) +
                "/callback.gesture/" +
                String(256 + thumb_flex_value)         + "/" +
                String(256 + index_finger_flex_value)  + "/" +
@@ -229,6 +228,7 @@ void get_gesture(int &pitch, int &roll) {
 
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
+    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS); // Useful for Render redirects
     Serial.print("Requesting: ");
     Serial.println(url);
 
