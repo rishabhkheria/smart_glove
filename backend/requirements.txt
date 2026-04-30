@@ -1,0 +1,10 @@
+Flask==3.0.3
+Flask-Cors==4.0.1
+Flask-RESTful==0.3.10
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.4.2
+twilio==9.0.5
+gTTS==2.5.1
+pygame==2.5.2
+gunicorn==22.0.0

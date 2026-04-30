@@ -58,8 +58,11 @@ else:
     print("⚠️ Twilio credentials not set; Twilio disabled. Put real values into backend/.env and do not commit them.")
     twilio_client = None
 
-pygame.mixer.init()
-print("✅ Pygame mixer initialized")
+try:
+    pygame.mixer.init()
+    print("✅ Pygame mixer initialized")
+except Exception as e:
+    print("⚠️ Pygame mixer failed to initialize (Normal on headless cloud servers):", e)
 
 # ==============================
 #  HELPER FUNCTIONS
